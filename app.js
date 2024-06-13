@@ -12,11 +12,36 @@ function isTouching(a, b) {
 
 const player = document.querySelector("#player");
 window.addEventListener("keyup", function (e) {
+  const key = e.key;
   const curTop = extractPos(player.style.top);
-  player.style.top = `${curTop + 50}px`;
+  const curLeft = extractPos(player.style.left);
+  switch (key) {
+    case "ArrowUp":
+    case "Up":
+      player.style.top = `${curTop - 50}px`;
+      break;
+    case "ArrowDown":
+    case "Down":
+      player.style.top = `${curTop + 50}px`;
+      break;
+    case "ArrowRight":
+    case "Right":
+      player.style.left = `${curLeft + 50}px`;
+      player.style.transform = "scale(1,1)";
+      break;
+    case "ArrowLeft":
+    case "Left":
+      player.style.left = `${curLeft - 50}px`;
+      player.style.transform = "scale(-1,1)";
+      break;
+    default:
+      break;
+  }
 });
 
 const extractPos = (pos) => {
-  if (!pos) return 0;
+  if (!pos) return 100;
   return parseInt(pos.slice(0, -2));
 };
+
+const moveCoin = () => {};
