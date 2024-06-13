@@ -15,32 +15,39 @@ const coin = document.querySelector("#coin");
 
 window.addEventListener("keyup", function (e) {
   const key = e.key;
-  const curTop = extractPos(player.style.top);
-  const curLeft = extractPos(player.style.left);
+
   switch (key) {
     case "ArrowUp":
     case "Up":
-      player.style.top = `${curTop - 50}px`;
+      moveVertical(player, -50);
       break;
     case "ArrowDown":
     case "Down":
-      player.style.top = `${curTop + 50}px`;
+      moveVertical(player, 50);
       break;
     case "ArrowRight":
     case "Right":
-      player.style.left = `${curLeft + 50}px`;
+      moveHorizontal(player, 50);
       player.style.transform = "scale(1,1)";
       break;
     case "ArrowLeft":
     case "Left":
-      player.style.left = `${curLeft - 50}px`;
+      moveHorizontal(player, -50);
       player.style.transform = "scale(-1,1)";
-      break;
-    default:
       break;
   }
   if (isTouching(player, coin)) moveCoin();
 });
+
+const moveHorizontal = (element, amount) => {
+  const curLeft = extractPos(player.style.left);
+  element.style.left = `${curLeft + amount}px`;
+};
+
+const moveVertical = (element, amount) => {
+  const curTop = extractPos(player.style.top);
+  element.style.top = `${curTop + amount}px`;
+};
 
 const extractPos = (pos) => {
   if (!pos) return 100;
