@@ -11,6 +11,8 @@ function isTouching(a, b) {
 }
 
 const player = document.querySelector("#player");
+const coin = document.querySelector("#coin");
+
 window.addEventListener("keyup", function (e) {
   const key = e.key;
   const curTop = extractPos(player.style.top);
@@ -37,6 +39,7 @@ window.addEventListener("keyup", function (e) {
     default:
       break;
   }
+  if (isTouching(player, coin)) moveCoin();
 });
 
 const extractPos = (pos) => {
@@ -45,9 +48,10 @@ const extractPos = (pos) => {
 };
 
 const moveCoin = () => {
-  const coin = document.querySelector("#coin");
   const x = Math.floor(Math.random() * window.innerHeight);
   const y = Math.floor(Math.random() * window.innerWidth);
   coin.style.top = `${x}px`;
   coin.style.left = `${y}px`;
 };
+
+moveCoin();
