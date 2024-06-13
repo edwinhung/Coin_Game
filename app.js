@@ -44,4 +44,10 @@ const extractPos = (pos) => {
   return parseInt(pos.slice(0, -2));
 };
 
-const moveCoin = () => {};
+const moveCoin = () => {
+  const coin = document.querySelector("#coin");
+  const x = Math.floor(Math.random() * window.innerHeight);
+  const y = Math.floor(Math.random() * window.innerWidth);
+  coin.style.top = `${x}px`;
+  coin.style.left = `${y}px`;
+};
